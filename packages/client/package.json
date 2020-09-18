@@ -1,8 +1,7 @@
 {
   "name": "@frontend-assignment/client",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/bundle.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --config webpack.config.js",
