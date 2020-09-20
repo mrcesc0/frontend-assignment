@@ -1,0 +1,16 @@
+.input-search-pokemons {
+  height: 50px;
+}
+
+.input-search-pokemons.ant-input-search {
+  border-radius: 10px;
+}
+
+.input-search-pokemons .ant-input {
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.input-search-pokemons .ant-input-search-icon:before {
+  display: none;
+}

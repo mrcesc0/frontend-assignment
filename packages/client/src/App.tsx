@@ -1,5 +1,9 @@
 import React from "react";
-import { Layout, PageHeader, Input, Row, Col } from "antd";
+import { Layout, PageHeader, Row, Col } from "antd";
+
+import { Separator } from "./components/Separator/Separator";
+import { SearchBar } from "./components/SearchBar/SearchBar";
+import { TableComponent as Table } from "./components/Table/Table";
 
 import "./App.css";
 
@@ -15,17 +19,13 @@ const App = () => (
     <Content className="content">
       <Row>
         <Col span={8} offset={8}>
-          <Input.Group size="large">
-            <Input.Search
-              className="input-search-pokemons"
-              placeholder="Search a pokemon..."
-              defaultValue=""
-              size="large"
-              allowClear={true}
-              minLength={3}
-              loading={false}
-            />
-          </Input.Group>
+          <SearchBar />
+        </Col>
+      </Row>
+      <Separator />
+      <Row>
+        <Col span={18} offset={3}>
+          <Table />
         </Col>
       </Row>
     </Content>
