@@ -16,7 +16,7 @@ export function SearchBar({ placeholder }: SearchBarProps): JSX.Element {
   const error = useSelector(store.error$, store.error$.getValue());
 
   const handleOnChange = (value: string) => {
-    store.searchTerm$.next(value);
+    store.searchTerm$.next(value.trim());
   };
 
   return (

@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --config webpack.config.js",
+    "lint:autofix": "eslint \"./src\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "private": true,

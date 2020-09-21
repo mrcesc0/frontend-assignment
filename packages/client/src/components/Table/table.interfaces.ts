@@ -1,3 +1,5 @@
+import { Key } from "antd/lib/table/interface";
+
 export interface Pokemon {
   id: string;
   name: string;
@@ -13,6 +15,7 @@ export interface Edge {
 export interface PageInfo {
   hasNextPage: boolean;
   endCursor: string;
+  total: number;
 }
 
 export interface PokemonsResponse {
@@ -20,4 +23,11 @@ export interface PokemonsResponse {
     edges: Edge[];
     pageInfo: PageInfo;
   };
+}
+
+export interface QueryVariables {
+  name: string;
+  types: Key[] | null;
+  after: string;
+  limit: number;
 }

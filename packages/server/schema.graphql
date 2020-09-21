@@ -1,6 +1,7 @@
 type PageInfo {
   endCursor: ID
   hasNextPage: Boolean
+  total: Int
 }
 
 type Pokemon {
