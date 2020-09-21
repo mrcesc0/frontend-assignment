@@ -1,8 +1,12 @@
 import { ColumnsType } from "antd/lib/table";
 import { uniq, flatMap } from "lodash";
 
-import { Pokemon } from "./table.interfaces";
+import { Pokemon, PokemonsResponse } from "./table.interfaces";
 
+/**
+ *
+ * @param dataSource
+ */
 function computeTypeFieldFilters(dataSource?: Pokemon[]) {
   if (!dataSource) return;
 
@@ -13,8 +17,12 @@ function computeTypeFieldFilters(dataSource?: Pokemon[]) {
   }));
 }
 
+/**
+ *
+ * @param dataSource
+ */
 export function computeColumnsWithFiltersOnTypeField(
-  dataSource?: Pokemon[]
+  dataSource: Pokemon[] | undefined
 ): ColumnsType<Pokemon> {
   return [
     {
@@ -26,9 +34,6 @@ export function computeColumnsWithFiltersOnTypeField(
       dataIndex: "types",
       filters: computeTypeFieldFilters(dataSource),
       filterMultiple: true,
-      onFilter: (value, record) => {
-        return record.types.includes(value as string);
-      },
       render: (types) => {
         return types.join(", ");
       },
@@ -38,4 +43,14 @@ export function computeColumnsWithFiltersOnTypeField(
       dataIndex: "classification",
     },
   ];
+}
+
+/**
+ *
+ * @param response
+ */
+export function getDataSource(
+  response: PokemonsResponse | undefined
+): Pokemon[] | undefined {
+  return response?.pokemons.edges.map((e) => e.node);
 }

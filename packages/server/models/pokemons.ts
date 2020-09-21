@@ -17,31 +17,39 @@ const SIZE = 10;
 export function query(args: {
   after?: string;
   limit?: number;
-  q?: string;
+  name?: string;
+  types?: string[];
 }): Connection<Pokemon> {
-  const { after, q, limit = SIZE } = args;
+  const { after, name, types, limit = SIZE } = args;
 
-  const filterByQ: (as: Pokemon[]) => Pokemon[] =
-    // filter only if q is defined
-    q === undefined
+  const filterByName: (as: Pokemon[]) => Pokemon[] =
+    name == null || name.length === 0
       ? identity
-      : A.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
+      : A.filter((p) => p.name.toLowerCase().includes(name.toLowerCase()));
+
+  const filterByTypes: (as: Pokemon[]) => Pokemon[] =
+    types == null || types.length === 0
+      ? identity
+      : A.filter((p) => types.some((t) => p.types.includes(t)));
 
   const sliceByAfter: (as: Pokemon[]) => Pokemon[] =
-    // filter only if q is defined
     after === undefined
       ? identity
-      : as =>
+      : (as) =>
           pipe(
             as,
-            A.findIndex(a => a.id === after),
-            O.map(a => a + 1),
-            O.fold(() => as, idx => as.slice(idx))
+            A.findIndex((a) => a.id === after),
+            O.map((a) => a + 1),
+            O.fold(
+              () => as,
+              (idx) => as.slice(idx)
+            )
           );
 
   const results: Pokemon[] = pipe(
     data,
-    filterByQ,
+    filterByName,
+    filterByTypes,
     sliceByAfter,
     // slicing limit + 1 because the `toConnection` function should known the connection size to determine if there are more results
     slice(0, limit + 1)

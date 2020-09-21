@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const POKEMONS = gql`
-  query GetPokemons {
-    pokemons {
+  query GetPokemons($name: String, $types: [String]) {
+    pokemons(name: $name, types: $types) {
       pageInfo {
         hasNextPage
         endCursor
