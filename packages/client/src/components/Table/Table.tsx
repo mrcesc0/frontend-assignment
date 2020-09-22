@@ -116,8 +116,9 @@ export function TableComponent(): JSX.Element {
       dataSource={dataSource}
       columns={columns}
       loading={loading}
-      onChange={handleOnChange}
       pagination={paginationOptions}
+      onChange={handleOnChange}
+      sticky={true}
     />
   );
 }
