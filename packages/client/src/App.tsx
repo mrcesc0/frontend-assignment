@@ -1,9 +1,9 @@
 import React from "react";
 import { Layout, PageHeader, Row, Col } from "antd";
 
-import { Separator } from "./components/Separator/Separator";
-import { SearchBar } from "./components/SearchBar/SearchBar";
-import { TableComponent as Table } from "./components/Table/Table";
+import Separator from "./components/Separator/Separator";
+import SearchBar from "./components/SearchBar/SearchBar";
+import Table from "./components/Table/Table";
 
 import "./App.css";
 

@@ -6,7 +6,6 @@ export interface Edge<A> {
 export interface PageInfo {
   endCursor?: string;
   hasNextPage: boolean;
-  total: number;
 }
 
 export interface Connection<A> {

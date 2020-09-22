@@ -15,7 +15,6 @@ export interface Edge {
 export interface PageInfo {
   hasNextPage: boolean;
   endCursor: string;
-  total: number;
 }
 
 export interface PokemonsResponse {
@@ -28,6 +27,6 @@ export interface PokemonsResponse {
 export interface QueryVariables {
   name: string;
   types: Key[] | null;
-  after: string;
+  after: string | null;
   limit: number;
 }

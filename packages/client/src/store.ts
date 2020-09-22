@@ -4,7 +4,7 @@ import { BehaviorSubject } from "rxjs";
 export class Store {
   private static instance: Store;
   public readonly searchTerm$ = new BehaviorSubject<string>("");
-  public readonly loading$ = new BehaviorSubject<boolean>(false);
+  public readonly loading$ = new BehaviorSubject<boolean>(true);
   public readonly error$ = new BehaviorSubject<ApolloError | undefined>(
     undefined
   );

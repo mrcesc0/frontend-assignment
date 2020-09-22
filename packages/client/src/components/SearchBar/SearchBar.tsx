@@ -10,25 +10,32 @@ interface SearchBarProps {
   placeholder: string;
 }
 
-export function SearchBar({ placeholder }: SearchBarProps): JSX.Element {
-  const store = Store.getInstance();
-  const loading = useSelector(store.loading$, store.loading$.getValue());
-  const error = useSelector(store.error$, store.error$.getValue());
+const SearchBar = React.memo(
+  ({ placeholder }: SearchBarProps): JSX.Element => {
+    const store = Store.getInstance();
+    const loading = useSelector(store.loading$, store.loading$.getValue());
+    const error = useSelector(store.error$, store.error$.getValue());
 
-  const handleOnChange = (value: string) => {
-    store.searchTerm$.next(value.trim());
-  };
+    const handleOnChange = React.useCallback(
+      (value: string) => {
+        store.searchTerm$.next(value.trim());
+      },
+      [store.searchTerm$]
+    );
 
-  return (
-    <Input.Group size="large">
-      <Input.Search
-        className="input-search-pokemons"
-        placeholder={placeholder}
-        size="large"
-        loading={loading}
-        disabled={!!error}
-        onSearch={handleOnChange}
-      />
-    </Input.Group>
-  );
-}
+    return (
+      <Input.Group size="large">
+        <Input.Search
+          className="input-search-pokemons"
+          placeholder={placeholder}
+          size="large"
+          loading={loading}
+          disabled={!!error}
+          onSearch={handleOnChange}
+        />
+      </Input.Group>
+    );
+  }
+);
+
+export default SearchBar;

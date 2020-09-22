@@ -1,6 +1,5 @@
 import { ColumnsType } from "antd/lib/table";
 import { uniq, flatMap } from "lodash";
-import { DEFAULT_AFTER } from "./table.constants";
 
 import { Pokemon, PokemonsResponse } from "./table.interfaces";
 
@@ -54,19 +53,4 @@ export function getDataSource(
   response: PokemonsResponse | undefined
 ): Pokemon[] | undefined {
   return response?.pokemons.edges.map((e) => e.node);
-}
-
-/**
- *
- * @param pageSize
- * @param currentPage
- */
-export function computeAfter(
-  pageSize: number | undefined,
-  currentPage: number | undefined
-): string {
-  if (pageSize === undefined || currentPage === undefined) return DEFAULT_AFTER;
-
-  const after = pageSize * (currentPage - 1);
-  return after.toString().padStart(3, "0");
 }
