@@ -30,10 +30,7 @@ const TableComponent = (): JSX.Element => {
   const endCursor = data?.pokemons.pageInfo.endCursor;
   const hasNextPage = data?.pokemons.pageInfo.hasNextPage;
 
-  // My store is just a singleton that handles the data
-  // I need to share with other components
   const store = Store.getInstance();
-
   const searchTerm = useSelector(
     store.searchTerm$,
     store.searchTerm$.getValue()
@@ -92,18 +89,27 @@ const TableComponent = (): JSX.Element => {
         const newEdges = fetchMoreResult?.pokemons.edges;
         const pageInfo = fetchMoreResult?.pokemons.pageInfo;
 
-        if (pageInfo == null || newEdges == null) return previousResult;
+        if (pageInfo != null && newEdges != null && newEdges.length > 0) {
+          return {
+            pokemons: {
+              edges: [...previousResult.pokemons.edges, ...newEdges],
+              pageInfo,
+            },
+          };
+        }
 
-        return {
-          pokemons: {
-            edges: [...previousResult.pokemons.edges, ...newEdges],
-            pageInfo,
-          },
-        };
+        return previousResult;
       },
     });
   }, [endCursor, fetchMore]);
 
+  /**
+   * Get the footer content
+   * @description let the user load more results if "hasNextPage" is true
+   * otherwise let him back to top
+   * @todo Handle whenever to show the ScrollToTop based on scrollHeight
+   * @see {@link https://ant.design/components/table/#components-table-demo-bordered}
+   */
   const getFooter = () => {
     return hasNextPage ? (
       <LoadMore onClick={handleLoadMoreClick} />
@@ -115,12 +121,12 @@ const TableComponent = (): JSX.Element => {
   //#region Effects
 
   React.useEffect(() => {
-    store.loading$.next(loading);
-  }, [loading, store.loading$]);
+    store.setLoading(loading);
+  }, [loading, store]);
 
   React.useEffect(() => {
-    store.error$.next(error);
-  }, [error, store.error$]);
+    store.setError(error);
+  }, [error, store]);
 
   React.useEffect(() => {
     setVariables((old) => ({

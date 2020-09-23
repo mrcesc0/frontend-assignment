@@ -18,9 +18,9 @@ const SearchBar = React.memo(
 
     const handleOnChange = React.useCallback(
       (value: string) => {
-        store.searchTerm$.next(value.trim());
+        store.setSearchTerm(value.trim());
       },
-      [store.searchTerm$]
+      [store]
     );
 
     return (
