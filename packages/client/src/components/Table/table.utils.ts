@@ -1,5 +1,6 @@
 import { ColumnsType } from "antd/lib/table";
-import { uniq, flatMap } from "lodash";
+import uniq from "lodash/uniq";
+import flatMap from "lodash/flatMap";
 
 import { Pokemon, PokemonsResponse } from "./table.interfaces";
 
