@@ -1,5 +1,10 @@
 {
   "name": "frontend-assignment",
+  "homepage": "https://github.com/mrcesc0/frontend-assignment",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrcesc0/frontend-assignment.git"
+  },
   "author": {
     "name": "Walter Barbagallo",
     "email": "walter.barbagallo@satispay.com"
