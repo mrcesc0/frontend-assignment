@@ -22,8 +22,8 @@
 ## Build
 
 - ##### Development version
-  `yarn workspace @frontend-assignment/server run build:dev`
+  `yarn workspace @frontend-assignment/client run build:dev`
 - ##### Production version
-  `yarn workspace @frontend-assignment/server run build:prod`
+  `yarn workspace @frontend-assignment/client run build:prod`
 - ##### Serve the build on localhost
-  `yarn workspace @frontend-assignment/server run serve:dist`
+  `yarn workspace @frontend-assignment/client run serve:dist`
