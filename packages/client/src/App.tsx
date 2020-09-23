@@ -19,13 +19,23 @@ const App = (): JSX.Element => {
       />
       <Content className="content">
         <Row>
-          <Col span={8} offset={8}>
+          <Col
+            xl={{ span: 8, offset: 8 }}
+            lg={{ span: 10, offset: 7 }}
+            md={{ span: 12, offset: 6 }}
+            sm={{ span: 14, offset: 5 }}
+            xs={{ span: 22, offset: 1 }}
+          >
             <SearchBar placeholder="Search a pokemon..." />
           </Col>
         </Row>
         <Separator />
         <Row>
-          <Col span={18} offset={3}>
+          <Col
+            lg={{ span: 18, offset: 3 }}
+            md={{ span: 20, offset: 2 }}
+            sm={{ span: 22, offset: 1 }}
+          >
             <Table />
           </Col>
         </Row>
